@@ -1,16 +1,35 @@
-# django-online-shopping
-This is simple clone for online shopping site built with django. 
+# Simple demo for Shopping site 
 
-## Prerequisite
-Python - 2.7
-Django - 1.10
+This is simple demo website that how exactly can make an e-commerce website in Django. It's very basic level clone for e-commerce website using Django framework
 
-## How to Start
+### Prerequisites
+
+We assume that you have proper version of python is installed (Python version = 2.7.10). or else you can download from it's official website
+
+[Python](https://www.python.org/downloads/)
+
+### Installing
+
+For installation you need to install all the required modules using requirements.txt file in console using command 
+
+```
+pip install -r requirements.txt
+```
+
+## Getting Started
+
+You can start project using command
+
 ```
 python manage.py runserver
 ```
 
-Run above command in project directory
+after going into clonned directory
 
-## Admin Panel
-You can access admin panel with mainurl/admin  
+## Authors
+
+* **Keyur Rathod** 
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details

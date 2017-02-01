@@ -1,0 +1,80 @@
+{% extends "shop/base.html" %}
+
+{% block head_title%}
+    {{ title }}
+{% endblock %}
+
+{% block head_extra %}
+<style type="text/css">
+    .price_range, .rating, .tags{margin-top: 10px;}
+    .product_page{margin-top: 50px;}
+    input[type="submit"]{margin-top: 10px;}
+    .thumbnail img{height: 200px;}
+    .col-md-4 {
+        max-height: 300px;
+        margin-bottom: 40px;
+    }
+</style>
+
+{% endblock %}
+{% block content %}
+
+    <div class="row product_page">
+        <div class="col-md-3">
+            <h1>Filter</h1>
+            <form method="POST" action="/" />
+                {% csrf_token %}
+                <label>Search with name</label>
+                <input type="text" name="search_query" />
+
+                <div class="price_range">
+                    <label>Price</label>
+                    <input maxlength="4" size="4" placeholder="Min" name="min_price" /> - <input maxlength="4" size="4" placeholder="Max" name="max_price" />
+                </div>
+
+                <div class="rating">
+                    <label>Rating</label>
+                    <select name="rating">
+                        <option value="-">-</option>
+                    {% for c_r in rating %}
+                          <option value="{{c_r.0}}">{{c_r.1}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <div class="tags">
+                    <label>Tags</label>
+                    <select name="tag">
+                        <option value="-">-</option>
+                    {% for c_r in tags %}
+                          <option value="{{c_r.id}}">{{c_r.word}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <input type="submit" class="btn" value="Search Now">
+            </form>
+            <form method="GET" action="/">
+                <input class="btn" type="submit" value="Clear All">
+            </form>
+        </div>
+        <div class="col-sm-9">
+            {% if products %}
+                {% for product in products %}
+                  <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                      <img class="img-responsive" src="{{product.image.url}}" alt="{{product.name}}">
+                      <div class="caption">
+                        <h3>{{product.name}}</h3>
+                        <p>Price : {{product.price}}</p>
+                        <!-- <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p> -->
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            {% else %}
+                <h2>No product found.</h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
